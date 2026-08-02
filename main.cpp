@@ -73,15 +73,17 @@ void addMoney() {
     double amount = doubleFilter("Enter amount: ");
 
     string reason;
-    cout << "Reason: ";
-    cin >> reason;
+    cout << "Reason (0 to undo): "; cin >> reason;
+    if (reason == "0") {
+        return;
+    }
 
     balance += amount;
     saveBalance();
 
     ofstream file("expenses.txt", ios::app);
-    file << "Added    : RM" << left << setw(10) << fixed << setprecision(2) << amount << "(" << reason << ")"
-        << "\nBalance  : RM" << balance << endl;
+    file<< "Added    : RM" << left << setw(10) << fixed << setprecision(2) << amount << "(" << reason << ")" << endl
+        << "Balance  : RM" << balance << endl;
 }
 
 // Record expenses
