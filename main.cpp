@@ -124,7 +124,7 @@ void recordExpense() {
 
         string category;
         do {
-            int categoryChoice = intFilter("(1=food, 2=transport, 3=other, 0 to undo)\nCategory:");
+            int categoryChoice = intFilter("(1=food, 2=transport, 3=other, 0 to undo)\nCategory: ");
             if (categoryChoice == 0) {
                 break;
             }
@@ -182,11 +182,11 @@ void readExpenses() {
 
     while (getline(file, line)) {
         if (line.find("Date:") == 0) {
-            int fileDay = stoi(line.substr(18));
+            fileDay = stoi(line.substr(18));
             if (print) {
-                cout << right << setw(49) << "Total Expense    : RM" << left << setw(5) << fixed << setprecision(2) << total << endl;
+                cout << right << setw(46) << "Total Expense    : RM" << right << setw(8) << fixed << setprecision(2) << total << endl;
                 if (fileDay == 0) {
-                    cout << right << setw(49) << "Total Expense (W): RM" << left << setw(5) << fixed << setprecision(2) << totalW << endl;
+                    cout << right << setw(46) << "Total Expense (W): RM" << right << setw(8) << fixed << setprecision(2) << totalW << endl;
                 }
                 cout << "\n=======================================================\n";
             }
@@ -218,14 +218,10 @@ void readExpenses() {
             }
         }
     }
-    if (print) {
-        cout << "\n-------------------------------------------------------" << endl;
-        cout << right << setw(49) << "Total Expense    : RM" << left << setw(5) << fixed << setprecision(2) << total << endl;
-        if (fileDay == 0) {
-            cout << right << setw(49) << "Total Expense (W): RM" << left << setw(5) << fixed << setprecision(2) << totalW << endl;
-        }
-        cout << right << setw(49) << "Total Expense (M): RM" << left << setw(5) << fixed << setprecision(2) << totalM << endl;
-    }
+    cout << "\n-------------------------------------------------------" << endl;
+    cout<< right << setw(46) << "Total Expense    : RM" << right << setw(8) << fixed << setprecision(2) << total << endl
+        << right << setw(46) << "Total Expense (W): RM" << right << setw(8) << fixed << setprecision(2) << totalW << endl
+        << right << setw(46) << "Total Expense (M): RM" << right << setw(8) << fixed << setprecision(2) << totalM << endl;
     file.close();
 }
 
@@ -298,8 +294,7 @@ void readReport() {
     int width = 10;
     for (int i=0; i<12; i++) {
         cout << left << fixed << setprecision(2) << noshowpos;
-        cout
-            << "| " << setw(6) << monthNames[i]
+        cout<< "| " << setw(6) << monthNames[i]
             << "| " << setw(width) << ExpenseM[i][0]
             << "| " << setw(width) << ExpenseM[i][1]
             << "| " << setw(width) << ExpenseM[i][2]
@@ -310,8 +305,7 @@ void readReport() {
     }
     cout << "= ===== = ========= = ========= = ========= = ========= = ========= = ========== =" << endl;
     cout << left << fixed << setprecision(2) << noshowpos;
-    cout
-        << "| " << setw(6) << "All"
+    cout<< "| " << setw(6) << "All"
         << "| " << setw(width) << totalExpenseY[0]
         << "| " << setw(width) << totalExpenseY[1]
         << "| " << setw(width) << totalExpenseY[2]
@@ -329,8 +323,7 @@ int main() {
     do {
         cout << "\n====== Expense Tracker ======\n";
         cout << "Current Balance: RM" << fixed << setprecision(2) << balance << endl;
-        cout 
-            << "1. Add Money\n"
+        cout<< "1. Add Money\n"
             << "2. Record Expense\n"
             << "3. View Expenses\n"
             << "4. Report\n"
